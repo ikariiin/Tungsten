@@ -1,4 +1,4 @@
-import DOMObserver from './DOMObserver';
+import mount from './Mounter';
 
 const parser = node => {
     if( node.classList && node.classList.contains('message') ) {
@@ -13,3 +13,5 @@ const observer = new DOMObserver();
 
 observer.addParser(parser, '.user-container .message');
 observer.drain();
+
+mount();
