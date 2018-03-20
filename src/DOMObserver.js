@@ -1,3 +1,6 @@
+/**
+ * @author rlemnon <https://github.com/rlemon>
+ */
 class DOMObserver {
     parsers = [];
     queue = [];
