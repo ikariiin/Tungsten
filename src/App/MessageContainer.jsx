@@ -3,10 +3,8 @@ import DOMObserver from "../DOMObserver";
 
 class MessageContainer extends Component {
     parser = (node) => {
-        if( node.classList && node.classList.contains('message') ) {
+        if( node.classList && node.classList.contains('message') && !node.classList.contains('pending') ) {
             this.setState(prevState => {
-                console.log(prevState);
-
                 prevState.rawMessage.push({
                     content: node.querySelector('.content').innerHTML
                 });
@@ -31,8 +29,11 @@ class MessageContainer extends Component {
         super(props);
     }
 
-    render() {
+    componentWillMount() {
         this.state.observer.drain();
+    }
+
+    render() {
         return (
             <pre className='message-container'>
                 { JSON.stringify(this.state.rawMessage) }
