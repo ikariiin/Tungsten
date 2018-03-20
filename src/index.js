@@ -9,9 +9,9 @@ const parser = node => {
 const watcher = node => {
 };
 
-const observer = new DOMObserver();
-
-observer.addParser(parser, '.user-container .message');
-observer.drain();
+// const observer = new DOMObserver();
+//
+// observer.addParser(parser, '.user-container .message');
+// observer.drain();
 
 mount();

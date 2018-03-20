@@ -20,10 +20,14 @@ class DOMObserver {
     addParser (parser, selector) {
         if( selector ) this.queue.push(selector);
         this.parsers.push(parser);
+
+        return this;
     }
 
     addWatcher (watcher) {
         this.watchers.push(watcher);
+
+        return this;
     }
 
     drain() {
