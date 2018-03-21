@@ -8,7 +8,8 @@ class ChatWebSocketHijack {
         this.fkey = fkey;
     }
 
-    getWebSocketUri() {
+    getWebSocketUri(roomid) {
+        this.roomid = roomid;
         return fetch(`/ws-auth`, {
             credentials: "same-origin",
             method: 'POST',

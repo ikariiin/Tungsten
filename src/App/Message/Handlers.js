@@ -1,8 +1,18 @@
 export default class Handlers {
     object = null;
+    roomid = null;
 
-    constructor(object) {
+    static EVENT_ID_MAP = {
+        "MESSAGE": 1,
+        "MESSAGE_EDIT": 2,
+        "MESSAGE_STAR": 6,
+        "MESSAGE_DELETE": 10,
+    };
+
+
+    constructor(object, roomid) {
         this.object = object;
+        this.roomid = roomid;
     }
 
     getOnOpenHandler() {
@@ -10,10 +20,10 @@ export default class Handlers {
     }
 
     getOnMessageHandler() {
-        return this.object.onMessage;
+        return ev => this.defaultPrimaryEventDataParser(this.roomid, ev);
     }
 
-    static defaultPrimaryEventDataParser(roomid, event) {
+     defaultPrimaryEventDataParser(roomid, event) {
         const parsedEventData = JSON.parse(event.data);
 
         // Check if we do receive the data for the room id in the first place
@@ -22,9 +32,24 @@ export default class Handlers {
             // If it isn't an array, we probably don't need it
             if(typeof roomEvents === "undefined" || !(roomEvents instanceof Array)) return null;
 
-            roomEvents.forEach(console.log.bind(console));
+            roomEvents.forEach(event => this.processPrimaryEvent(event));
         }
 
         return null;
+    }
+
+     processPrimaryEvent(event) {
+        switch (event['event_type']) {
+            case Handlers.EVENT_ID_MAP.MESSAGE:
+                this.object.onMessage({
+                    type: 'message',
+                    content: event['content']
+                });
+                break;
+            default:
+                console.log(event);
+                console.log("Meh...");
+                break;
+        }
     }
 }

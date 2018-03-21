@@ -5,7 +5,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <MessageContainer roomid={167147} />
+                <MessageContainer roomid={Number(/\d+/.exec(window.location)[0])} />
             </div>
         );
     }

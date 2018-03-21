@@ -4,14 +4,19 @@ import Handlers from './Handlers';
 import Message from "./Message";
 
 class MessageContainer extends Component {
-    handlers = new Handlers(this);
+    handlers = null;
 
     onOpen = (event) => {
         console.log(event);
     };
 
-    onMessage = (event, data) => {
-        const primaryMessage = Handlers.defaultPrimaryEventDataParser(this.props.roomid, event);
+    onMessage = (message) => {
+        this.setState(prevState => {
+            prevState.messageComponents.push(
+                <Message messageContent={message.content}/>
+            );
+            return {...prevState};
+        });
     };
 
     state = {
@@ -25,7 +30,8 @@ class MessageContainer extends Component {
     }
 
     componentWillMount() {
-        this.state.websocketClient.getWebSocketUri().then(res => res.json()).then(json => this.state.websocketClient.setWS(json, this.handlers));
+        this.handlers = new Handlers(this, this.props.roomid);
+        this.state.websocketClient.getWebSocketUri(this.props.roomid).then(res => res.json()).then(json => this.state.websocketClient.setWS(json, this.handlers));
     }
 
     render() {
