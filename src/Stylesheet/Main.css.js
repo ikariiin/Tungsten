@@ -14,6 +14,10 @@ body {
     color: #FFFFFF;
     z-index: 1000;
 }
+.message {
+    font-size: 1rem;
+    margin: 10px 0;
+}
     `
 };
 

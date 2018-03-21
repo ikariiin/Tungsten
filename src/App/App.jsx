@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import MessageContainer from './MessageContainer';
+import MessageContainer from './Message/MessageContainer';
 
 class App extends Component {
     render() {
         return (
             <div>
-                <MessageContainer />
+                <MessageContainer roomid={167147} />
             </div>
         );
     }
