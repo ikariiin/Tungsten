@@ -39,11 +39,18 @@ export default class Handlers {
     }
 
      processPrimaryEvent(event) {
+        console.log(event);
         switch (event['event_type']) {
             case Handlers.EVENT_ID_MAP.MESSAGE:
                 this.object.onMessage({
                     type: 'message',
-                    content: event['content']
+                    messages: [{
+                        content: event['content'],
+                        key: event['message_id'],
+                        timestamp: event['time_stamp'],
+                    }],
+                    userId: event['user_id'],
+                    userName: event['user_name']
                 });
                 break;
             default:
