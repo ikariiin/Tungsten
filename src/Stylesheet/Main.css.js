@@ -14,6 +14,10 @@ body {
     color: #FFFFFF;
     z-index: 1000;
     overflow: auto;
+    display: flex;
+}
+.t-message-container {
+    width: 70vw;
 }
 .t-message {
     font-size: 1rem;
@@ -32,10 +36,13 @@ body {
     flex-grow: 1;
 }
 .t-message .t-messages-container .t-content {
-    background: #62727b;
+    background: rgba(0,0,0,.3);
     padding: 10px;
     border-radius: 3px;
     margin: 10px 10px;
+}
+.t-message .t-messages-container .t-content:first-child {
+    margin-top: 0;
 }
     `
 };

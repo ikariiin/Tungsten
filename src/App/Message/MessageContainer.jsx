@@ -51,7 +51,7 @@ class MessageContainer extends Component {
 
     render() {
         return (
-            <section className='message-container'>
+            <section className='t-message-container'>
                 { this.state.messages.map(message => {
                     console.log(message);
                     return <Message {...message} key={message.messages[0].key} />
