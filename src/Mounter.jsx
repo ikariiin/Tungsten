@@ -6,13 +6,15 @@ import css from './Stylesheet/Main.css.js';
 
 const mount = _ => {
     const mountingElement = document.createElement('main');
-    mountingElement.classList.add('mounter');
+    //mountingElement.classList.add('mounter');
 
     const styleElement = document.createElement('style');
     styleElement.textContent = css();
     document.head.appendChild(styleElement);
 
     document.body.appendChild(mountingElement);
+
+    document.querySelector('#input-area').remove();
 
     render(<App />, mountingElement);
 };

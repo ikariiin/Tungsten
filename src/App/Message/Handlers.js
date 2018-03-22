@@ -39,7 +39,6 @@ export default class Handlers {
     }
 
      processPrimaryEvent(event) {
-        console.log(event);
         switch (event['event_type']) {
             case Handlers.EVENT_ID_MAP.MESSAGE:
                 this.object.onMessage({
