@@ -40,13 +40,27 @@ class Message extends Component {
                 <section className={ `t-messages-container ${(CHAT.CURRENT_USER_ID === this.props.userId) ? 't-current-user' : ''}` }>
                     { this.props.messages.map(message => {
                         return (
-                            <MessageContent content={message.content} key={message.key} />
+                            <MessageContent content={this.parse(message.content)} key={message.key} />
                         );
                     }) }
                 </section>
             </section>
         );
     }
+
+    parse(content) {
+        if(typeof content === 'undefined') {
+            return `<div class="t-message-removed">(its a gone)</div>`;
+        }
+
+        // const textContainer = document.createElement('div');
+        // textContainer.innerHTML = content;
+        // const text = textContainer.textContent;
+        // NO BLOCKQUOTES, FUCK YOU.
+
+        return content;
+    }
+
 }
 
 export default Message;

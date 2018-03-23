@@ -32,6 +32,7 @@ body {
     z-index: 1000;
     overflow: auto;
     display: flex;
+    line-height: 1.6;
 }
 .t-message-system {
     width: 70vw;
@@ -151,6 +152,12 @@ body {
     height: 40px;
     width: 40px;
     border-radius: 50%;
+}
+.t-blockquote {
+    margin: 5px 10px;
+    padding-left: 1.5rem;
+    border-left: 2px solid #88ffff;
+    white-space: pre;
 }
     `
 };

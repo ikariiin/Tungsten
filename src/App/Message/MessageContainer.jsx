@@ -70,14 +70,14 @@ class MessageContainer extends Component {
 
     applyScrollLogic() {
         const container = document.querySelector('.t-message-container');
-        if(container.scrollTop >= container.scrollHeight - 30 || container.scrollTop <= container.scrollHeight + 30) {
+        if(container.scrollTop <= container.scrollHeight - 30 || container.scrollTop >= container.scrollHeight + 30) {
             // TODO: Find a better fix for this case
             setTimeout(_ => container.scrollTop = container.scrollHeight, 2);
         }
     }
 
     loadAllTranscript() {
-        fetch(`https://chat.stackoverflow.com/chats/${this.props.roomid}/events`, {
+        fetch(`${window.location.origin}/chats/${this.props.roomid}/events`, {
             credentials: "same-origin",
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' },

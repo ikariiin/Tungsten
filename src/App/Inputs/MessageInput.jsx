@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class MessageInput extends Component {
-    static MESSAGE_POST_URI = 'https://chat.stackoverflow.com/chats/{roomid}/messages/new';
+    static MESSAGE_POST_URI = `${window.location.origin}/chats/{roomid}/messages/new`;
 
     fkey = document.querySelector('#fkey').value;
 
