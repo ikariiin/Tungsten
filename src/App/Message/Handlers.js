@@ -5,8 +5,20 @@ export default class Handlers {
     static EVENT_ID_MAP = {
         "MESSAGE": 1,
         "MESSAGE_EDIT": 2,
+        "USER_JOIN": 3,
+        "USER_LEAVE": 4,
+        "ROOM_NAME_CHANGE": 5,
         "MESSAGE_STAR": 6,
+        "USER_PINGED": 8,
+        "MESSAGE_FLAGGED": 9,
         "MESSAGE_DELETE": 10,
+        "MOD_FLAG": 12,
+        "GLOB_NOTIFICATION": 14,
+        "USER_KICKED": 15,
+        "USER_NOTIFICATION": 16,
+        "USER_INVITE": 17,
+        "MESSAGE_MOVED_OUT": 19,
+        "MESSAGE_MOVED_IN": 20
     };
 
 
@@ -23,7 +35,7 @@ export default class Handlers {
         return ev => this.defaultPrimaryEventDataParser(this.roomid, ev);
     }
 
-     defaultPrimaryEventDataParser(roomid, event) {
+    defaultPrimaryEventDataParser(roomid, event) {
         const parsedEventData = JSON.parse(event.data);
 
         // Check if we do receive the data for the room id in the first place
@@ -33,29 +45,50 @@ export default class Handlers {
             if(typeof roomEvents === "undefined" || !(roomEvents instanceof Array)) return null;
 
             roomEvents.forEach(event => this.processPrimaryEvent(event));
+        } else {
+            // We'd probably want to add handlers here to process events in other rooms, mostly messages
         }
 
         return null;
     }
 
-     processPrimaryEvent(event) {
+    processPrimaryEvent(event) {
         switch (event['event_type']) {
             case Handlers.EVENT_ID_MAP.MESSAGE:
-                this.object.onMessage({
-                    type: 'message',
-                    messages: [{
-                        content: event['content'],
-                        key: event['message_id'],
-                        timestamp: event['time_stamp'],
-                    }],
-                    userId: event['user_id'],
-                    userName: event['user_name']
-                });
+                this.sendMessageToMessageHandler(event);
+                break;
+            case Handlers.EVENT_ID_MAP.USER_JOIN:
+                this.sendDataToUserJoinHandler(event);
+                break;
+            case Handlers.EVENT_ID_MAP.USER_LEAVE:
+                this.sendDataToUserLeaveHandler(event);
                 break;
             default:
                 console.log(event);
                 console.log("Meh...");
                 break;
         }
+    }
+
+    sendMessageToMessageHandler(event) {
+        this.object.onMessage.forEach(handler => handler({
+                type: 'message',
+                messages: [{
+                    content: event['content'],
+                    key: event['message_id'],
+                    timestamp: event['time_stamp'],
+                }],
+                userId: event['user_id'],
+                userName: event['user_name']
+            })
+        );
+    }
+
+    sendDataToUserJoinHandler(event) {
+        this.object.onUserJoin.forEach(handler => handler(event));
+    }
+
+    sendDataToUserLeaveHandler(event) {
+        this.object.onUserLeave.forEach(handler => handler(event));
     }
 }

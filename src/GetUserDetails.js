@@ -8,6 +8,6 @@ export default class GetUserDetails {
     }
 
     get() {
-        return fetch(`${GetUserDetails.URI_BASE}/${this.userId}?showHistory=true&_=${Date.now()}`).then(_ => _.json());
+        return fetch(`${GetUserDetails.URI_BASE}/${this.userId}?showHistory=true`).then(_ => _.json());
     }
 }

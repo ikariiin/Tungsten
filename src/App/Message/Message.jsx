@@ -10,7 +10,7 @@ class Message extends Component {
         userDetails: null
     };
 
-    static GRAVATAR_AVATAR_TEMPLATE = 'https://www.gravatar.com/avatar/{hash}?s=200&d=identicon&r=PG';
+    static GRAVATAR_AVATAR_TEMPLATE = 'https://www.gravatar.com/avatar/{hash}?s=128&d=identicon&r=PG';
 
     componentWillMount() {
         this.userDetailGetter = new GetUserDetails(this.props.userId);

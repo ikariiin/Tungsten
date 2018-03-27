@@ -5,8 +5,6 @@ import Message from "./Message";
 import PassiveRoomMessage from "./PassiveRoomMessage";
 
 class MessageContainer extends Component {
-    handlers = null;
-
     state = {
         websocketClient: (new ChatWebSocketHijack(document.querySelector('#fkey').value)),
         messages: [],
@@ -18,6 +16,20 @@ class MessageContainer extends Component {
     };
 
     onMessage = (message) => {
+        this.setState(prevState => {
+            if(prevState.messages.length === 100) {
+                const messages = prevState.messages;
+
+                return {
+                    ...prevState,
+                    messages: messages.splice(1)
+                };
+            } else {
+                return {
+                    ...prevState
+                }
+            }
+        });
         if(message['userId'] === this.state.lastMessageOwner) {
             this.setState(prevState => {
                 prevState.messages[prevState.messages.length - 1].messages.push(message.messages[0]);
@@ -46,8 +58,7 @@ class MessageContainer extends Component {
 
     componentWillMount() {
         this.loadAllTranscript();
-        this.handlers = new Handlers(this, this.props.roomid);
-        this.state.websocketClient.getWebSocketUri(this.props.roomid).then(res => res.json()).then(json => this.state.websocketClient.setWS(json, this.handlers));
+        this.props.pushMessageHandler(this.onMessage);
     }
 
     render() {
