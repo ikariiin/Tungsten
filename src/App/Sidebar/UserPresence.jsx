@@ -46,7 +46,7 @@ export default class UserPresence extends Component {
                 });
             }
         });
-    }
+    };
 
     componentWillMount() {
         this.props.pushOtherRoomsMessagesHandler(this.otherRoomEventHandler);

@@ -200,6 +200,7 @@ body {
     padding: 0 8px;
     flex-grow: 1;
     overflow: hidden;
+    max-width: calc(80% - 16px);
 }
 .t-muted-text {
     text-align: center;

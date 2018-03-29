@@ -81,7 +81,7 @@ class MessageContainer extends Component {
 
     applyScrollLogic() {
         const container = document.querySelector('.t-message-container');
-        if(container.scrollTop <= container.scrollHeight - 30 || container.scrollTop >= container.scrollHeight + 30) {
+        if(container.scrollTop >= container.scrollHeight - 60 || container.scrollTop <= container.scrollHeight + 60) {
             // TODO: Find a better fix for this case
             setTimeout(_ => container.scrollTop = container.scrollHeight, 2);
         }
