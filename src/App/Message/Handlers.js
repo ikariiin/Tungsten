@@ -38,6 +38,15 @@ export default class Handlers {
     defaultPrimaryEventDataParser(roomid, event) {
         const parsedEventData = JSON.parse(event.data);
 
+        Object.keys(parsedEventData).forEach(roomKey => {
+            const roomEvents = parsedEventData[roomKey]['e'];
+
+            // If it isn't an array, we probably don't need it
+            if(typeof roomEvents === "undefined" || !(roomEvents instanceof Array)) return;
+
+            this.object.onOtherRoomsMessage.forEach(handler => handler(roomEvents));
+        });
+
         // Check if we do receive the data for the room id in the first place
         if(`r${roomid}` in parsedEventData) {
             const roomEvents = parsedEventData[`r${roomid}`]['e'];
@@ -45,8 +54,6 @@ export default class Handlers {
             if(typeof roomEvents === "undefined" || !(roomEvents instanceof Array)) return null;
 
             roomEvents.forEach(event => this.processPrimaryEvent(event));
-        } else {
-            // We'd probably want to add handlers here to process events in other rooms, mostly messages
         }
 
         return null;

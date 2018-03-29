@@ -12,7 +12,8 @@ class App extends Component {
     handlers = {
         onMessage: [],
         onUserJoin: [],
-        onUserLeave: []
+        onUserLeave: [],
+        onOtherRoomsMessage: []
     };
 
     state = {
@@ -27,6 +28,8 @@ class App extends Component {
 
     pushOnUserLeave = handler => this.handlers.onUserLeave.push(handler);
 
+    pushOtherRoomsMessage = handler => this.handlers.onOtherRoomsMessage.push(handler);
+
     componentWillMount() {
         this.state.websocketClient.getWebSocketUri(this.roomid).then(res => res.json()).then(json => this.state.websocketClient.setWS(json, this.state.handler));
     }
@@ -39,8 +42,10 @@ class App extends Component {
                     <MessageInput roomid={this.state.roomid} />
                 </section>
                 <Sidebar
+                    pushMessageHandler={this.pushOnMessage}
                     pushUserJoinHandler={this.pushOnUserJoin}
                     pushUserLeaveHandler={this.pushOnUserLeave}
+                    pushOtherRoomsMessagesHandler={this.pushOtherRoomsMessage}
                 />
             </div>
         );

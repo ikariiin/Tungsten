@@ -1,6 +1,6 @@
 const css = _ => {
     return `
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400|Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400,500|Material+Icons');
 .material-icons {
     font-size: inherit !important;
     line-height: inherit !important;
@@ -158,6 +158,52 @@ body {
     padding-left: 1.5rem;
     border-left: 2px solid #88ffff;
     white-space: pre;
+}
+.t-message-removed {
+    color: rgba(255,255,255,.4);
+}
+.t-room {
+    background: #FFF;
+    color: #363636;
+    /* padding: 4px; */
+    border-radius: 2px;
+    box-shadow: 0 4px 5px rgba(0,0,0,.4);
+}
+.t-room:not(:first-child) {
+    margin-top: 7px;
+}
+.t-room-name {
+    font-size: 1.15rem;
+    font-weight: 300;
+    padding: 4px;
+}
+.t-room-name a {
+    color: #363636;
+    text-decoration: none;
+}
+.t-room-recent-message {
+    background: rgba(0,0,0,.1);
+    padding: 4px;
+    display: flex;
+}
+.t-room-recent-message .t-user-name {
+    font-weight: 500;
+    font-size: .9rem;
+    margin: 2px 3px 0 3px;
+    height: 20px;
+    overflow: hidden;
+}
+.t-room-recent-message .t-message-content {
+    font-weight: 400;
+    font-size: .9rem;
+    height: 20px;
+    padding: 0 8px;
+    flex-grow: 1;
+    overflow: hidden;
+}
+.t-muted-text {
+    text-align: center;
+    color: rgba(255,255,255,.4);
 }
     `
 };
