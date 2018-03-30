@@ -1,11 +1,14 @@
 const css = _ => {
     return `
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400,500|Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400,500|Roboto+Mono:400|Material+Icons');
 .material-icons {
     font-size: inherit !important;
     line-height: inherit !important;
     display: inline-flex;
     vertical-align: middle;
+}
+::-webkit-scrollbar {
+    width: 8px;
 }
 ::-webkit-scrollbar-thumb {
     background: #111;
@@ -14,8 +17,14 @@ const css = _ => {
 ::-webkit-scrollbar-track {
     background: transparent;
 }
-::-webkit-scrollbar {
+::-webkit-scrollbar:vertical {
     width: 8px;
+}
+::-webkit-scrollbar:horizontal {
+    height: 8px;
+}
+:root {
+    --contrast-theme-color: #1d7791;
 }
 body {
     font-family: Roboto, sans-serif;
@@ -97,7 +106,7 @@ body {
 }
 .t-message .t-messages-container .t-content {
     background: rgba(0,0,0,.3);
-    padding: 10px;
+    padding: 6.5px 10px;
     border-radius: 3px;
     margin: 10px 10px;
 }
@@ -106,7 +115,8 @@ body {
     text-decoration: none;
 }
 .t-message .t-messages-container.t-current-user .t-content {
-    background: #01579b;
+    background: var(--contrast-theme-color);
+    color: #FFF;
 }
 .t-message .t-messages-container .t-content:first-child {
     margin-top: 0;
@@ -205,6 +215,29 @@ body {
 .t-muted-text {
     text-align: center;
     color: rgba(255,255,255,.4);
+}
+
+.t-image-upload-button container {
+    margin: 0 10px;
+}
+.t-image-upload-button {
+    background: rgba(255,255,255,.1);
+    border: none;
+    outline: none;
+    color: #FFF;
+    border-radius: 3px;
+    height: 33px;
+    width: 33px;
+    line-height: 26px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,.5);
+    cursor: pointer;
+}
+
+.ace_editor, pre, code {
+    font-family: "Roboto Mono", "Monaco", Consolas, "Courier New", monospace;
 }
     `
 };

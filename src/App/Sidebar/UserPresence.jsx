@@ -55,7 +55,7 @@ export default class UserPresence extends Component {
 
     render() {
         return (
-            <Window title='Presence' theme='#1de9b6' themeContrastText='#222222'>
+            <Window title='Presence' theme="#1d7791" themeContrastText='#FFF'>
                 { (this.state.presence.length === 1)
                     ? <MutedText>No presence in other rooms, you little lonely guy</MutedText>
                     : this.state.presence.map((room, index) => {

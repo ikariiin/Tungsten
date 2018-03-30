@@ -1,5 +1,8 @@
 # Tungsten
 
+Initial version screenshot:
+![screenshot v1](https://raw.githubusercontent.com/SaitamaSama/Tungsten/master/Screenshots/chat.png)
+
 Current goals of this project:
  - Add a code editor on, `Ctrl + K`
  - Have keyboard shortcuts for actions like room change, etc.

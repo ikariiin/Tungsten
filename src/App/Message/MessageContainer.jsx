@@ -68,7 +68,6 @@ class MessageContainer extends Component {
                     (this.state.messages.length !== 0)
                         ? this.state.messages.map((message, index) => {
                             if(index === this.state.messages.length - 1) {
-                                console.log('last');
                                 this.applyScrollLogic();
                             }
                             return <Message {...message} key={message.messages[0].key} />
