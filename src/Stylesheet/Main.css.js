@@ -217,8 +217,8 @@ body {
     color: rgba(255,255,255,.4);
 }
 
-.t-image-upload-button container {
-    margin: 0 10px;
+.t-image-upload-button-container {
+    margin: 0 10px 0 0;
 }
 .t-image-upload-button {
     background: rgba(255,255,255,.1);
@@ -226,14 +226,67 @@ body {
     outline: none;
     color: #FFF;
     border-radius: 3px;
-    height: 33px;
-    width: 33px;
+    height: 37px;
+    width: 37px;
     line-height: 26px;
     font-size: 15px;
     border: none;
     outline: none;
     box-shadow: 0 2px 5px rgba(0,0,0,.5);
     cursor: pointer;
+}
+
+.t-dropzone-modal {
+    width: 100%;
+    height: 300px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.t-dropzone-inside-text {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.1);
+}
+.t-dropzone-inside-text.t-active {
+    background: rgba(0,255,0,.1);
+}
+.t-dropzone-inside-text.t-rejected {
+    background: rgba(255,0,0,.1);
+}
+.t-dropzone-inside-text.t-accepted {
+    background: rgba(0,0,0,0);
+    cursor: pointer;
+}
+.t-preview-grid-container {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    text-align: center;
+}
+.t-dropzone-inside-text.t-accepted .t-preview-image {
+    margin: 10px;
+    border-radius: 3px;
+    box-shadow: 0 3px 5px rgba(0,0,0,.4);
+    background-size: cover;
+    width: calc(33% - 20px);
+    height: 220px;
+    display: inline-block;
+}
+.t-dropzone-inside-text .t-upload-icon {
+    font-size: 50px !important;
+    margin: 10px 0;
+}
+.t-dropzone-inside-text .t-image-placeholder {
+    border: 3px dashed #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.t-dropzone-inside-text .t-add-icon {
+    font-size: 30px important;
 }
 
 .ace_editor, pre, code {
