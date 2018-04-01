@@ -39,7 +39,7 @@ class App extends Component {
             <div className='mounter'>
                 <section className='t-message-system'>
                     <MessageContainer roomid={this.state.roomid} fkey={this.fkey} pushMessageHandler={this.pushOnMessage} />
-                    <MessageInput roomid={this.state.roomid} />
+                    <MessageInput fkey={this.fkey} roomid={this.state.roomid} />
                 </section>
                 <Sidebar
                     pushMessageHandler={this.pushOnMessage}

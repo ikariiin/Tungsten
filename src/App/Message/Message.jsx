@@ -50,7 +50,7 @@ class Message extends Component {
 
     parse(content) {
         if(typeof content === 'undefined') {
-            return `<div class="t-message-removed">(its a gone)</div>`;
+            return <div class="t-message-removed">(its a gone)</div>;
         }
 
         // const textContainer = document.createElement('div');
@@ -58,7 +58,14 @@ class Message extends Component {
         // const text = textContainer.textContent;
         // NO BLOCKQUOTES, FUCK YOU.
 
-        return content;
+        const placeholder = document.createElement('div');
+        placeholder.innerHTML = content;
+
+        if(placeholder.querySelector('pre') !== null) {
+            const preCode = <div> </div>;
+        }
+
+        return <div>{content}</div>;
     }
 
 }

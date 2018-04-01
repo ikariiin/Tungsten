@@ -236,6 +236,17 @@ body {
     cursor: pointer;
 }
 
+.t-uploading-progress {
+    width: 100%;
+    height: 300px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 100;
+    background: rgba(0,0,0,.1);
+}
 .t-dropzone-modal {
     width: 100%;
     height: 300px;
@@ -249,6 +260,7 @@ body {
     align-items: center;
     justify-content: center;
     background: rgba(0,0,0,.1);
+    cursor: pointer;
 }
 .t-dropzone-inside-text.t-active {
     background: rgba(0,255,0,.1);
@@ -258,22 +270,43 @@ body {
 }
 .t-dropzone-inside-text.t-accepted {
     background: rgba(0,0,0,0);
-    cursor: pointer;
+    cursor: auto;
 }
 .t-preview-grid-container {
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow-y: auto;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: hidden;
 }
 .t-dropzone-inside-text.t-accepted .t-preview-image {
     margin: 10px;
     border-radius: 3px;
     box-shadow: 0 3px 5px rgba(0,0,0,.4);
     background-size: cover;
+    /* Making it 33% rather than 33.333333% because .333333% accounts for the border on the placeholder image. */
     width: calc(33% - 20px);
     height: 220px;
-    display: inline-block;
+    display: block;
+    position: relative;
+    cursor: auto;
+}
+.t-dropzone-inside-text.t-accepted .t-dump-icon {
+    font-size: 24px !important;
+    position: absolute;
+    bottom: calc(-30px / 2);
+    right: calc(-30px / 2);
+    border-radius: 50%;
+    line-height: 34px;
+    width: 43px;
+    height: 43px;
+    background: #FFF;
+    color: #222;
+    box-shadow: 0 3px 5px rgba(0,0,0,.4);
+    cursor: pointer;
 }
 .t-dropzone-inside-text .t-upload-icon {
     font-size: 50px !important;
@@ -281,9 +314,14 @@ body {
 }
 .t-dropzone-inside-text .t-image-placeholder {
     border: 3px dashed #666;
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
+    margin: 10px;
+    border-radius: 3px;
+    width: calc(33% - 20px);
+    height: 220px;
+    cursor: pointer;
 }
 .t-dropzone-inside-text .t-add-icon {
     font-size: 30px important;

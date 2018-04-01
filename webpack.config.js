@@ -1,6 +1,6 @@
 module.exports = {
     entry: [
-        './src/index.js'
+        'babel-polyfill', './src/index.js'
     ],
     plugins: [
     ],

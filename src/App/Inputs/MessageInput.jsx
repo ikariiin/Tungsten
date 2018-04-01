@@ -12,11 +12,8 @@ export default class MessageInput extends Component {
     };
 
     sendMessage = (message, toTrim = true) => {
-        // Forgive me, immutable gods.
-        let trimmedMessage = message;
-        if(toTrim) {
-            trimmedMessage = message.trim();
-        }
+        // On, second thoughts, fu.
+        const trimmedMessage = toTrim ? message.trim() : message;
 
         if(trimmedMessage.length === 0) return;
 
@@ -106,7 +103,7 @@ export default class MessageInput extends Component {
                         handleEditorCompletion={this.handleEditorCompletion}
                     />
                     : null }
-                <ImageUploadButton />
+                <ImageUploadButton fkey={this.props.fkey} roomid={this.props.roomid} />
                 <textarea
                     className='t-message-input'
                     id='t-message-input'
