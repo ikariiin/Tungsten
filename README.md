@@ -2,7 +2,7 @@
 
 Main chat:
 
-![MainChat](https://github.com/SaitamaSama/Tungsten/blob/master/Screenshots/Code.png?raw=true)
+![MainChat](https://github.com/SaitamaSama/Tungsten/blob/master/Screenshots/Chat.png?raw=true)
 
 Code editor (Opens on pressing `Ctrl + K` from the message):
 
