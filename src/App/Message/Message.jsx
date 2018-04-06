@@ -3,6 +3,7 @@ import GetUserDetails from "../../GetUserDetails";
 import Avatar from "./Avatar";
 import MessageContent from "./MessageContent";
 import DummyAvatar from "./DummyAvatar";
+import Highlight from 'react-highlight';
 
 class Message extends Component {
     userDetailGetter = null;
@@ -50,7 +51,7 @@ class Message extends Component {
 
     parse(content) {
         if(typeof content === 'undefined') {
-            return <div class="t-message-removed">(its a gone)</div>;
+            return <div className="t-message-removed">(its a gone)</div>;
         }
 
         // const textContainer = document.createElement('div');
@@ -62,10 +63,16 @@ class Message extends Component {
         placeholder.innerHTML = content;
 
         if(placeholder.querySelector('pre') !== null) {
-            const preCode = <div> </div>;
+            const code = placeholder.querySelector("pre").textContent;
+            return (
+                <Highlight>
+                    { code }
+                </Highlight>
+            );
         }
 
-        return <div>{content}</div>;
+        return <div dangerouslySetInnerHTML={ {__html: content} }>
+        </div>;
     }
 
 }

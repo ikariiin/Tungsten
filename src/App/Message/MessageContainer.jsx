@@ -5,6 +5,8 @@ import Message from "./Message";
 import PassiveRoomMessage from "./PassiveRoomMessage";
 
 class MessageContainer extends Component {
+    static MAX_MESSAGES = 70;
+
     state = {
         websocketClient: (new ChatWebSocketHijack(document.querySelector('#fkey').value)),
         messages: [],
@@ -17,7 +19,7 @@ class MessageContainer extends Component {
 
     onMessage = (message) => {
         this.setState(prevState => {
-            if(prevState.messages.length === 100) {
+            if(prevState.messages.length === MessageContainer.MAX_MESSAGES) {
                 const messages = prevState.messages;
 
                 return {
@@ -82,7 +84,7 @@ class MessageContainer extends Component {
         const container = document.querySelector('.t-message-container');
         if(container.scrollTop >= container.scrollHeight - 60 || container.scrollTop <= container.scrollHeight + 60) {
             // TODO: Find a better fix for this case
-            setTimeout(_ => container.scrollTop = container.scrollHeight, 40);
+            setTimeout(_ => container.scrollTop = container.scrollHeight, 80);
         }
     }
 

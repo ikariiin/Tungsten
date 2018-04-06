@@ -11,7 +11,8 @@ export default class MessageContent extends Component {
 
     render() {
         return (
-            <div className='t-content' dangerouslySetInnerHTML={ {__html: this.props.content} }>
+            <div className='t-content'>
+                { this.props.content }
             </div>
         )
     }
