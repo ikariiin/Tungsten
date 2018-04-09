@@ -108,7 +108,24 @@ body {
     background: rgba(0,0,0,.3);
     padding: 6.5px 10px;
     border-radius: 3px;
-    margin: 10px 10px;
+    margin: 3px 5px;
+}
+.t-message .t-messages-container .t-content pre, .t-message .t-messages-container .t-content img.user-image, .t-message .t-messages-container .t-content .onebox {
+    margin: 0;
+}
+.t-image-placeholder {
+    width: 400px;
+    height: 225px;
+    /* Aspect Ratio: 16:9 */
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.t-message .t-messages-container .t-content .t-image {
+    width: 400px;
+    height: 225px;
+    background-size: cover;
 }
 .t-message .t-messages-container .t-content a, .t-sidebar a {
     color: #e91e63;
@@ -128,25 +145,28 @@ body {
     width: 30vw;
 }
 .t-window {
-    margin: 10px;
-    border: 5px solid #000;
+    margin: 10px 5px 10px 0;
     border-radius: 5px;
     background: transparent;
     border-top: 0;
     font-weight: 100;
 }
 .t-window .t-title {
-    background: transparent;
+    background: rgba(255,255,255,0.08);
     padding: 5px 10px;
     font-size: 1.1rem;
     font-weight: 300;
+    border-radius: 3px 3px 0 0;
 }
 .t-window .t-content {
     padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 0 0 3px 3px;
 }
-.t-window .t-room-title {
+.t-room-title {
     font-weight: 100;
-    font-size: 1.5rem;
+    font-size: 1.9rem;
+    margin: 20px 010px;
 }
 .t-window .t-room-desc {
     font-weight: 300;
@@ -173,7 +193,7 @@ body {
     color: rgba(255,255,255,.4);
 }
 .t-room {
-    background: #FFF;
+    /* background: #FFF; */
     color: #363636;
     /* padding: 4px; */
     border-radius: 2px;
@@ -186,20 +206,24 @@ body {
     font-size: 1.15rem;
     font-weight: 300;
     padding: 4px;
+    background: #FFF;
+    border-radius: 3px 3px 0 0;
 }
 .t-room-name a {
     color: #363636;
     text-decoration: none;
 }
 .t-room-recent-message {
-    background: rgba(0,0,0,.1);
+    background: transparent;
     padding: 4px;
     display: flex;
+    color: #FFF;
+    color: #FFF;
 }
 .t-room-recent-message .t-user-name {
     font-weight: 500;
     font-size: .9rem;
-    margin: 2px 3px 0 3px;
+    margin: 0 3px 0 3px;
     height: 20px;
     overflow: hidden;
 }

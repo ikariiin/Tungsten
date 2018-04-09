@@ -4,6 +4,7 @@ import Avatar from "./Avatar";
 import MessageContent from "./MessageContent";
 import DummyAvatar from "./DummyAvatar";
 import Highlight from 'react-highlight';
+import ImageOB from "./OneBoxes/ImageOB";
 
 class Message extends Component {
     userDetailGetter = null;
@@ -71,8 +72,17 @@ class Message extends Component {
             );
         }
 
-        return <div dangerouslySetInnerHTML={ {__html: content} }>
-        </div>;
+        if(placeholder.querySelector('img') !== null) {
+            const imgSrc = placeholder.querySelector('img').src;
+            return (
+                <ImageOB src={imgSrc} />
+            )
+        }
+
+        return (
+            <div dangerouslySetInnerHTML={ {__html: content} }>
+            </div>
+        );
     }
 
 }
