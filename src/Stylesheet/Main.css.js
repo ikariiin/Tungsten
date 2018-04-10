@@ -126,6 +126,7 @@ body {
     width: 400px;
     height: 225px;
     background-size: cover;
+    cursor: pointer;
 }
 .t-message .t-messages-container .t-content a, .t-sidebar a {
     color: #e91e63;
@@ -344,11 +345,90 @@ body {
     margin: 10px;
     border-radius: 3px;
     width: calc(33% - 20px);
-    height: 220px;
+    height: 200px;
     cursor: pointer;
+    padding-top: 20px;
 }
 .t-dropzone-inside-text .t-add-icon {
     font-size: 30px important;
+}
+
+.t-image-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+}
+.t-image-preview > .t-image-header {
+    font-size: 2rem;
+    font-weight: 100;
+    color: #FFF;
+    padding: 10px 20px;
+}
+.t-image-preview > .t-image-container {
+    width: 100%;
+    flex-grow: 1;
+    overflow: auto;
+    text-align: center;
+}
+.t-image-container > img {
+    max-height: 99%;
+    width: auto;
+    cursor: zoom-in;
+    transition: 300ms all ease;
+}
+.t-image-container > img.enlarge {
+    height: auto !important;
+    width: auto !important;
+    cursor: zoom-out;
+    max-height: none;
+}
+.t-image-preview > .t-image-details {
+    color: #FFF;
+    font-weight: 400;
+    padding: 10px;
+    display: flex;
+}
+.t-image-preview > .t-image-details > .t-textual-data {
+    flex-grow: 1;
+}
+.t-image-preview > .t-image-details > .t-close-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.t-image-preview > .t-image-details .t-title {
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+.t-image-preview > .t-image-details .t-time {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+.t-image-details .t-avatar-container {
+    display: flex;
+    align-items: center;
+}
+.t-avatar-container > .t-text {
+    align-self: center;
+    margin-right: 7px;
+}
+.t-image-details .t-avatar {
+    margin: 0 10px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    box-shadow: 0 2px 3px rgba(0,0,0,.3);
+    background-size: cover;
+}
+.t-avatar-container > .t-username {
+    color: #FFF;
+    text-decoration: none;
 }
 
 .ace_editor, pre, code {

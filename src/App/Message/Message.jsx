@@ -42,7 +42,7 @@ class Message extends Component {
                 <section className={ `t-messages-container ${(CHAT.CURRENT_USER_ID === this.props.userId) ? 't-current-user' : ''}` }>
                     { this.props.messages.map(message => {
                         return (
-                            <MessageContent content={this.parse(message.content)} key={message.key} />
+                            <MessageContent content={this.parse(message.content, message)} key={message.key} />
                         );
                     }) }
                 </section>
@@ -50,7 +50,7 @@ class Message extends Component {
         );
     }
 
-    parse(content) {
+    parse(content, message) {
         if(typeof content === 'undefined') {
             return <div className="t-message-removed">(its a gone)</div>;
         }
@@ -75,7 +75,7 @@ class Message extends Component {
         if(placeholder.querySelector('img') !== null) {
             const imgSrc = placeholder.querySelector('img').src;
             return (
-                <ImageOB src={imgSrc} />
+                <ImageOB src={imgSrc} data={ {messageData: message, userData: this.state.userDetails} } />
             )
         }
 
