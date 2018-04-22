@@ -42,7 +42,13 @@ class Message extends Component {
                 <section className={ `t-messages-container ${(CHAT.CURRENT_USER_ID === this.props.userId) ? 't-current-user' : ''}` }>
                     { this.props.messages.map(message => {
                         return (
-                            <MessageContent content={this.parse(message.content, message)} key={message.key} />
+                            <MessageContent
+                                modifyActionToPropagateToMessageView={this.props.modifyActionToPropagateToMessageView}
+                                content={this.parse(message.content, message)}
+                                key={message.key}
+                                details={message}
+                                messageId={message.key}
+                            />
                         );
                     }) }
                 </section>

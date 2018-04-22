@@ -72,7 +72,7 @@ class MessageContainer extends Component {
                             if(index === this.state.messages.length - 1) {
                                 this.applyScrollLogic();
                             }
-                            return <Message {...message} key={message.messages[0].key} />
+                            return <Message modifyActionToPropagateToMessageView={this.props.modifyActionToPropagateToMessageView} {...message} key={message.messages[0].key} />
                         })
                         : <PassiveRoomMessage message='No messages in this room yet.' />
                 }

@@ -3,4 +3,8 @@ export default class OpenLinkInNewTab {
         evt.persist();
         window.open(evt.target.href, '_blank');
     };
+
+    static open = (uri) => {
+        window.open(uri, '_blank');
+    };
 }

@@ -13,7 +13,8 @@ class App extends Component {
         onMessage: [],
         onUserJoin: [],
         onUserLeave: [],
-        onOtherRoomsMessage: []
+        onOtherRoomsMessage: [],
+        actionPropagation: []
     };
 
     state = {
@@ -30,6 +31,12 @@ class App extends Component {
 
     pushOtherRoomsMessage = handler => this.handlers.onOtherRoomsMessage.push(handler);
 
+    pushActionPropagationHandler = handler => this.handlers.actionPropagation.push(handler);
+
+    modifyActionToPropagateToMessageView = action => {
+        this.handlers.actionPropagation.forEach(handler => handler(action));
+    };
+
     componentWillMount() {
         this.state.websocketClient.getWebSocketUri(this.roomid).then(res => res.json()).then(json => this.state.websocketClient.setWS(json, this.state.handler));
     }
@@ -38,8 +45,17 @@ class App extends Component {
         return (
             <div className='mounter'>
                 <section className='t-message-system'>
-                    <MessageContainer roomid={this.state.roomid} fkey={this.fkey} pushMessageHandler={this.pushOnMessage} />
-                    <MessageInput fkey={this.fkey} roomid={this.state.roomid} />
+                    <MessageContainer
+                        roomid={this.state.roomid}
+                        fkey={this.fkey}
+                        pushMessageHandler={this.pushOnMessage}
+                        modifyActionToPropagateToMessageView={this.modifyActionToPropagateToMessageView}
+                    />
+                    <MessageInput
+                        fkey={this.fkey}
+                        roomid={this.state.roomid}
+                        pushActionPropagationHandler={this.pushActionPropagationHandler}
+                    />
                 </section>
                 <Sidebar
                     pushMessageHandler={this.pushOnMessage}

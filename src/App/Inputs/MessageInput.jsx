@@ -8,8 +8,17 @@ export default class MessageInput extends Component {
     fkey = document.querySelector('#fkey').value;
 
     state = {
-        openCodeEditorDialog: false
+        openCodeEditorDialog: false,
+        message: ``
     };
+
+    textInput = null;
+
+    componentWillMount() {
+        this.props.pushActionPropagationHandler(this.actionPropagationHandler);
+    }
+
+    setTextInput = element => this.textInput = element;
 
     sendMessage = (message, toTrim = true) => {
         // On, second thoughts, fu.
@@ -28,16 +37,17 @@ export default class MessageInput extends Component {
             .then(response => response.json())
             .then(timestamps => {
                 if(timestamps.hasOwnProperty('id')) {
-                    MessageInput.doSuccessThings();
+                    this.doSuccessThings();
                 }
             });
     };
 
-    static doSuccessThings() {
-        // I'm sorry :(
-        // TODO: Probably improve this in the future? :/
-        document.querySelector('#t-message-input').value = '';
-    }
+    actionPropagationHandler = action => {
+        this.setState({
+            message: `${action.content}${this.state.message}`
+        });
+        this.textInput.focus();
+    };
 
     inputKeyPressHandler = ev => {
         ev.persist();
@@ -51,12 +61,12 @@ export default class MessageInput extends Component {
         }
     };
 
-    handleEnterPress(ev) {
+    handleEnterPress = (ev) => {
         if(!ev.shiftKey) {
             ev.preventDefault();
-            this.sendMessage(ev.target.value);
+            this.sendMessage(this.state.message);
         }
-    }
+    };
 
     handlePossibleCodeEditorEvent(ev) {
         if(!ev.ctrlKey) {
@@ -87,10 +97,21 @@ export default class MessageInput extends Component {
 
         if(code.value.length !== 0) {
             const paddedString = MessageInput.leftPadCodeForMarkDown(code.value);
-            console.log(paddedString);
             this.sendMessage(paddedString, false);
         }
     };
+
+    handleInputChange = ev => {
+        this.setState({
+            message: ev.target.value
+        });
+    };
+
+    doSuccessThings() {
+        this.setState({
+            message: ``
+        });
+    }
 
     sendButtonClick = _ => this.sendMessage(document.querySelector('#t-message-input').value);
 
@@ -109,6 +130,9 @@ export default class MessageInput extends Component {
                     id='t-message-input'
                     onKeyDown={this.inputKeyPressHandler}
                     placeholder='Type your message here...'
+                    value={ this.state.message }
+                    onChange={ this.handleInputChange }
+                    ref={this.setTextInput}
                 >
                 </textarea>
                 <button className='t-message-send' onClick={this.sendButtonClick}>

@@ -103,6 +103,7 @@ body {
 }
 .t-message .t-messages-container {
     flex-grow: 1;
+    position: relative;
 }
 .t-message .t-messages-container .t-content {
     background: rgba(0,0,0,.3);
@@ -370,11 +371,18 @@ body {
     color: #FFF;
     padding: 10px 20px;
 }
+.t-posted-image {
+    display: inline-block;
+}
 .t-image-preview > .t-image-container {
     width: 100%;
     flex-grow: 1;
     overflow: auto;
-    text-align: center;
+    display: flex;
+    /* for chrome -> */
+    height: 50px;
+    justify-content: center;
+    align-items: center;
 }
 .t-image-container > img {
     max-height: 99%;
@@ -429,6 +437,11 @@ body {
 .t-avatar-container > .t-username {
     color: #FFF;
     text-decoration: none;
+}
+
+.t-context-menu {
+    position: fixed;
+    z-index: 5000;
 }
 
 .ace_editor, pre, code {
