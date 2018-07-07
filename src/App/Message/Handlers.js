@@ -1,6 +1,7 @@
 export default class Handlers {
     object = null;
     roomid = null;
+    messageHandlers = [];
 
     static EVENT_ID_MAP = {
         "MESSAGE": 1,
@@ -77,6 +78,12 @@ export default class Handlers {
         }
     }
 
+    createStreamForMessage = (message) => {
+        if(message['room_id'] === this.roomid) {
+            return (callback) => {}
+        }
+    };
+
     sendMessageToMessageHandler(event) {
         this.object.onMessage.forEach(handler => handler({
                 type: 'message',
@@ -84,6 +91,11 @@ export default class Handlers {
                     content: event['content'],
                     key: event['message_id'],
                     timestamp: event['time_stamp'],
+                    stars: event['message_stars'] ? event['message_stars'] : 0,
+                    selfStarred: event['message_starred'] ? event['message_starred'] : false,
+                    ownerStarred: event['message_owner_starred'] ? event['message_owner_starred'] : false,
+                    replyTo: event['parent_id'] ? event['parent_id'] : null,
+                    messageStream: this.createStreamForMessage(event)
                 }],
                 userId: event['user_id'],
                 userName: event['user_name']

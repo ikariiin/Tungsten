@@ -349,6 +349,7 @@ body {
     height: 200px;
     cursor: pointer;
     padding-top: 20px;
+    background: transparent;
 }
 .t-dropzone-inside-text .t-add-icon {
     font-size: 30px important;

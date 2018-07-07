@@ -32,6 +32,7 @@ class MessageContainer extends Component {
                 }
             }
         });
+
         if(message['userId'] === this.state.lastMessageOwner) {
             this.setState(prevState => {
                 prevState.messages[prevState.messages.length - 1].messages.push(message.messages[0]);
@@ -103,7 +104,11 @@ class MessageContainer extends Component {
                         messages: [{
                             content: message['content'],
                             key: message['message_id'],
-                            timestamp: message['time_stamp']
+                            timestamp: message['time_stamp'],
+                            stars: message['message_stars'] ? message['message_stars'] : 0,
+                            selfStarred: message['message_starred'] ? message['message_starred'] : false,
+                            ownerStarred: message['message_owner_starred'] ? message['message_owner_starred'] : false,
+                            replyTo: message['parent_id'] ? message['parent_id'] : null
                         }],
                         userId: message['user_id'],
                         userName: message['user_name']

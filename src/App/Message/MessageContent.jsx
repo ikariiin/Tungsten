@@ -8,11 +8,15 @@ export default class MessageContent extends Component {
         contextPosition: {
             x: null,
             y: null
-        }
+        },
+        stars: null,
+        selfStarred: null
     };
 
     componentWillMount() {
         this.state.details = this.props.details;
+        this.state.stars = this.props.details.stars;
+        this.state.selfStarred = this.props.details.selfStarred;
     }
 
     openContextMenu = ev => {
@@ -35,6 +39,13 @@ export default class MessageContent extends Component {
         });
     };
 
+    incrementStars = _ => {
+        this.setState({
+            stars: this.state.stars++
+        });
+        // Send star post request to server
+    };
+
     render() {
         return (
             <div>
@@ -48,6 +59,7 @@ export default class MessageContent extends Component {
                         handleClose={this.contextMenuClose}
                         modifyActionToPropagateToMessageView={this.props.modifyActionToPropagateToMessageView}
                         messageId={this.props.messageId}
+                        incrementStars={this.incrementStars}
                     />
                 }
             </div>
